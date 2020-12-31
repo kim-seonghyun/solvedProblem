@@ -1,0 +1,37 @@
+const { assert, expect } = require("chai");
+
+let progresses = [93, 30, 55];
+let speeds = [1, 30, 5];
+
+function returnOvertime(progresses, speeds) {
+  return (progresses = progresses.map((progress, index) => {
+    return Math.ceil((100 - progress) / speeds[index]);
+  }));
+}
+
+function returnResult(overtimes) {
+  let result = [];
+  let max = overtimes[0];
+  let count = 0;
+  overtimes.forEach((overtime, index) => {
+    if (overtime > max) {
+      max = overtime;
+      result.push(count);
+      count = 0;
+    }
+    count++;
+    if (typeof overtimes[index + 1] == "undefined") {
+      result.push(count);
+    }
+  });
+  return result;
+}
+
+describe("기능 개발 문제", function () {
+  it("결과는 [2,1]", function () {
+    let overtimes = returnOvertime(progresses, speeds);
+    let result = returnResult(overtimes);
+
+    expect(JSON.stringify(result)).equals(JSON.stringify([2, 1]));
+  });
+});
