@@ -1,0 +1,41 @@
+
+function lendGymSuit(studentArray){
+    for(let i =0 ; i<studentArray.length; i++){
+        if(studentArray[i] == 2){
+            studentArray[i]--;
+            if(studentArray[i-1] == false){
+                studentArray[i-1]++;
+                continue;
+            }
+            if(studentArray[i+1]==false){
+                studentArray[i+1]++;
+            }
+        }
+    }
+}
+
+function participatingStudent(studentArray){
+    let count =0;
+    studentArray.forEach(student => {
+        if(student >= 1){
+            count++;
+        }
+    })
+    return count;
+}
+
+function solution(n, lost, reserve) {
+    let studentArray = new Array(n);
+    for(let i=0; i<studentArray.length; i++){
+       studentArray[i] = 1;
+   }
+
+    lost.forEach(i => {
+        studentArray[i-1]--;
+    })
+    reserve.forEach(i =>{
+        studentArray[i-1]++;
+    })
+    lendGymSuit(studentArray);
+    return participatingStudent(studentArray);
+}
