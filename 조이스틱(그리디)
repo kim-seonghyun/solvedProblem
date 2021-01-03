@@ -1,0 +1,144 @@
+//진짜 개 재밌게 푼듯 ㅋㅋㅋ 시간가는줄 몰라서 주말이 날아감 ㅋ;;
+
+const {expect} = require('chai');
+
+
+//성공했당!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let alphabet = ['A', 'B', 'C', 'D', 'E','F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q','R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+let alphabets = {};
+
+alphabet.forEach((alpha,index)=>{
+    alphabets[alpha] = index +1;
+})
+
+//알파벳 바꾼 횟수
+function alphabetChangeCost(alpha = ''){
+    if(alphabets[alpha] >= alphabets['N']){
+        return  alphabets['Z'] - alphabets[alpha] +1;
+          
+     }else{
+         return alphabets[alpha] - 1;
+     }
+
+}
+
+//전체 알파벳 변환 하는데 소요된 cost , 순환 값은 포함안됨
+function alphabetsChangeCost(name = []){
+    let count =0;
+    for(let i=0; i< name.length; i++){
+        count += alphabetChangeCost(name[i]);
+    } 
+    return count;
+}
+// 순환값
+
+//a의 위치값 반환
+function return_A_locations(name = []){
+    let first = [];
+    let end = [];
+    
+    for(let i =0; i<name.length; i++){
+        while(name[i]!='A' && i < name.length){
+            i++;
+        }
+        first.push(i);
+        while(name[i]=='A' && i < name.length ){
+            i++;
+        }
+        end.push(i-1);
+    }
+    return {first,end};
+}
+
+//커서 바꾼 횟수
+function cursorChangeCost(name = []){
+    let min = name.length -1;
+    let {first,end} = return_A_locations(name);
+    //A가 없는경우
+    if(first[0] > end[0]){
+        return min;
+    }
+    if(first[0]==0 && end[0] == name.length-1){
+        return 0;
+    }
+    first.forEach((value,index)=>{
+        let curseCount = (value-1)*2 + (name.length-1) - end[index];
+        if(curseCount < min){
+            min = curseCount;
+        }
+    })
+    return min;
+}
+
+
+describe("커서 바꾼횟수 함수 테스트",function(){
+    it("56번 바꿔야됨",function(){
+        let name = 'JEROEN';
+        name = name.split('');
+        let result = cursorChangeCost(name) + alphabetsChangeCost(name);
+        expect(result).eq(56);
+    })
+    ,
+    it("23번 바꿔야됨",function(){
+        let name = 'JAN';
+        name = name.split('');
+        let result = cursorChangeCost(name) + alphabetsChangeCost(name);
+        expect(result).eq(23);
+    })
+})
+
+
+
+
+describe("배열에서 0의 첫번쨰위치와 마지막 위치 포인트하기",function(){
+    it("0,2",function(){
+        let name = ['A','A','A'];
+        let first = [];
+        let end = [];
+    
+        for(let i =0; i<name.length; i++){
+            while(name[i]!='A' && i < name.length){
+                i++;
+            }
+            first.push(i);
+            while(name[i]=='A' && i < name.length ){
+                i++;
+            }
+            end.push(i-1);
+        }
+        expect(first[0]).eq(0);
+        expect(end[0]).eq(2);
+    })
+})
+
+describe("최단 클릭으로 알파벳 설정 ",function(){
+    it("J는 9번 조작",function(){
+        let alpha = 'J';
+        let result = alphabetChangeCost(alpha);
+      expect(result ,"답은 9").eq(9);
+    })
+    it("Z는 1번 조작",function(){
+        let alpha = 'Z';
+        let result = alphabetChangeCost(alpha);
+      expect(result ,"답은 1").eq(1);
+    }),
+    it("O는 12번 조작",function(){
+        let alpha = 'O';
+        let result = alphabetChangeCost(alpha);
+        expect(result, "답은 12").eq(12);
+    })
+    it("A는 0번 조작",function(){
+        let alpha = 'A';
+        let result = alphabetChangeCost(alpha);
+        expect(result, "답은 0").eq(0);
+    })
+})
+
+describe("시계방향 카운트, 시계반대방향 카운트",function(){
+    it("시계방향카운트 답은 0",function(){
+        let name = "AAAAA";
+        let result = alphabetsChangeCost(name) ;
+        expect(result,"답은 0").eq(0);
+    })
+    it("시계반대 방향 A여부를 확인해야됨")
+})
