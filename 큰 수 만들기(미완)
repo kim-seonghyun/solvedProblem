@@ -1,0 +1,72 @@
+const { expect } = require("chai");
+
+//각 자릿수의 최대값 리턴
+function returnDigitMaxValue(number = [], k) {
+  let max = 0;
+  let maxValueindex = 0;
+  number.forEach((element, index) => {
+    let lastIndex = number.length - k;
+    if (element > max && index <= lastIndex) {
+      max = element;
+      maxValueindex = index;
+    }
+  });
+  //필요없는 요소 삭제
+  number.splice(0, maxValueindex + 1);
+  return max;
+}
+
+//만들수있는 최대값 리턴
+function returnMaxValue(number = "", k) {
+  number = number.split("");
+  //k는 만들 자릿수
+  k = number.length - k;
+  let max = [];
+  for (let i = k; i > 0; i--) {
+    max.push(returnDigitMaxValue(number, i));
+  }
+  return max.join("");
+}
+
+describe("각 자리수의 최대값과 인덱스 리턴", function () {
+  let number = "1231234";
+  number = number.split("");
+  it("첫번째는 3", () => {
+    let result = returnDigitMaxValue(number, 4);
+    expect(result).eq("3");
+  });
+});
+
+describe("returnMaxValue test", () => {
+  it("3234 ", () => {
+    let number = "1231234";
+
+    let k = 3;
+    let result = returnMaxValue(number, k);
+    expect(result).eq("3234");
+  });
+  it("775841", () => {
+    let number = "4177252841";
+    let k = 4;
+    let result = returnMaxValue(number, k);
+    expect(result).eq("775841");
+  });
+  it("94", function () {
+    let number = "1924";
+    let k = 2;
+    let result = returnMaxValue(number, k);
+    expect(result).eq("94");
+  });
+  it("123", function () {
+    let number = "123";
+    let k = 2;
+    let result = returnMaxValue(number, k);
+    expect(result).eq("3");
+  });
+  it("1", function () {
+    let number = "1";
+    let k = 0;
+    let result = returnMaxValue(number, k);
+    expect(result).eq("1");
+  });
+});
