@@ -1,0 +1,70 @@
+const { expect } = require("chai");
+
+function returnCarOnBridgeArray(truck_weights, affordWeight) {
+  let onBridge = new Array().fill().map((a) => {
+    return (a = new Array());
+  });
+  for (let i = 0; i < truck_weights.length; i++) {
+    let nowWeight = 0;
+    let tmp = [];
+    while (affordWeight >= nowWeight + truck_weights[i]) {
+      nowWeight += truck_weights[i];
+      tmp.push(truck_weights[i]);
+      i++;
+    }
+    onBridge.push(tmp);
+    i--;
+  }
+  return onBridge;
+}
+function timeTaken(onBridge = [], bridge_length) {
+  let result = 0;
+  onBridge.forEach((cars) => {
+    console.log(cars);
+    result += bridge_length;
+    result += cars.length - 1;
+  });
+  return result + 1;
+}
+
+describe("다리를 지나는 트럭!", function () {
+  it("다리위의 자동차 배열 : [[7], [4, 5], [6]];", () => {
+    const truck_weights = [7, 4, 5, 6];
+    const weight = 10;
+    let carOnBridge = returnCarOnBridgeArray(truck_weights, weight);
+    expect(JSON.stringify(carOnBridge)).eq("[[7],[4,5],[6]]");
+  });
+  it("다리 건너는데 걸리는 시간 8초", () => {
+    const truck_weights = [7, 4, 5, 6];
+    const bridge_length = 2;
+    const weight = 10;
+    let carOnBridge = returnCarOnBridgeArray(truck_weights, weight);
+    let result = timeTaken(carOnBridge, bridge_length);
+    expect(result).eq(8);
+  });
+  it("다리 건너는데 걸리는 시간 101초", () => {
+    const truck_weights = [10];
+    const bridge_length = 100;
+    const weight = 100;
+    let carOnBridge = returnCarOnBridgeArray(truck_weights, weight);
+    let result = timeTaken(carOnBridge, bridge_length);
+    expect(result).eq(101);
+  });
+  it("다리 건너는데 걸리는 시간 110초", () => {
+    const truck_weights = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+    const bridge_length = 100;
+    const weight = 100;
+    let carOnBridge = returnCarOnBridgeArray(truck_weights, weight);
+    let result = timeTaken(carOnBridge, bridge_length);
+    expect(result).eq(110);
+  });
+  it("다리 건너는데 걸리는 시간 19초", () => {
+    const truck_weights = [2, 2, 2, 2, 1, 1, 1, 1, 1];
+    const bridge_length = 5;
+    const weight = 5;
+    let carOnBridge = returnCarOnBridgeArray(truck_weights, weight);
+    let result = timeTaken(carOnBridge, bridge_length);
+    expect(result).eq(19);
+  });
+});
+8
