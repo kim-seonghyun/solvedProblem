@@ -1,0 +1,56 @@
+const { expect } = require("chai");
+
+let eachDigit = [4, 1, 2];
+
+function changeDigitTenToThree(n) {
+  let result = [];
+  while (n > 0) {
+    let digit = n % 3;
+    result.push(eachDigit[digit]);
+    // if (digit === 0) {
+    //   n = Math.floor(n / 3) - 1;
+    //   continue;
+    // }
+    // n = Math.floor(n / 3);
+    n = digit === 0 ? Math.floor(n / 3) - 1 : Math.floor(n / 3);
+  }
+  return result.reverse().join("");
+}
+
+describe("3진수 ", () => {
+  it("15의 결과는 114", () => {
+    let n = 15;
+    let result = changeDigitTenToThree(n);
+    expect(result).eq("114");
+  });
+  it("1의 결과는 1", function () {
+    let n = 1;
+    let result = changeDigitTenToThree(n);
+    expect(result).eq("1");
+  }),
+    it("2의 결과는 2", function () {
+      let n = 2;
+      let result = changeDigitTenToThree(n);
+      expect(result).eq("2");
+    }),
+    it("3의 결과는 4", function () {
+      let n = 3;
+      let result = changeDigitTenToThree(n);
+      expect(result).eq("4");
+    }),
+    it("14의 결과는 112", function () {
+      let n = 14;
+      let result = changeDigitTenToThree(n);
+      expect(result).eq("112");
+    });
+  it("40의 결과는1111", function () {
+    let n = 40;
+    let result = changeDigitTenToThree(n);
+    expect(result).eq("1111");
+  }),
+    it("513의 결과는 124224", function () {
+      let n = 513;
+      let result = changeDigitTenToThree(n);
+      expect(result).eq("124224");
+    });
+});
