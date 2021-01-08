@@ -1,0 +1,48 @@
+const { expect } = require("chai");
+
+function orOperation(a, b, n) {
+  let answer = (a | b).toString(2);
+  let result = "";
+  if (result.length < n) {
+    for (let i = 0; i < n - answer.length; i++) {
+      result += " ";
+    }
+  }
+  result += answer.replace(/0/g, " ").replace(/1/g, "#");
+  return result;
+}
+
+function secretMap(arr1, arr2, n) {
+  arr1 = arr1.map((element, index) => {
+    let a = element;
+    let b = arr2[index];
+    return orOperation(a, b, n);
+  });
+  return arr1;
+}
+
+describe("2진법 | 연산결과", () => {
+  it(" 10101", () => {
+    let a = 20,
+      b = 1;
+    let result = a | b;
+    expect(result.toString(2)).eq("10101");
+  });
+  it("# # #", () => {
+    let a = 20,
+      b = 1;
+    let result = orOperation(a, b);
+    expect(result).eq("# # #");
+  });
+});
+
+describe("비밀지도", () => {
+  it("첫번째 지도 케이스", () => {
+    let arr1 = [9, 20, 28, 18, 11];
+    let arr2 = [30, 1, 21, 17, 28];
+    n = 5;
+    let result = secretMap(arr1, arr2, n);
+    console.log(result);
+    expect(result).eq(["#####", "# # #", "### #", "#  ##", "#####"]);
+  });
+});
