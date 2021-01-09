@@ -1,0 +1,8 @@
+function solution(n) {
+   n = n.toString(3).split('');
+    let result = 0;
+    n.forEach((element,index)=>{
+        result += Math.pow(3,index) * element
+    })
+    return result;
+}
