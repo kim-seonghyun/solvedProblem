@@ -1,0 +1,7 @@
+function solution(s) {
+    let index = Math.ceil(s.length/2-1);
+    return (s.length%2==0) ? s.slice(index,index+2) : s.slice(index,index+1);
+}
+
+
+//쉬어가는 일요일~~
