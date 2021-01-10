@@ -1,0 +1,18 @@
+function solution(n) {
+    let arrayLength = 1000001
+    let numberArray = new Array(arrayLength).fill(true);
+
+    for(let i=2; i<arrayLength; i++){
+        for(let j=2; i*j <arrayLength; j++){
+            numberArray[i*j] = false;
+        }
+    }
+
+    let count =0;
+    for(let i =2; i<=n; i++){
+        if(numberArray[i] == true){
+            count++;
+        }
+    }
+    return count;
+}
