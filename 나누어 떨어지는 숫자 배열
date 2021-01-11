@@ -1,0 +1,9 @@
+function solution(arr, divisor) {
+    arr =arr.sort(function(a,b){return a-b}).filter(function(el){
+        return el % divisor == 0;
+    });
+    if (Object.keys(arr).length == 0){
+        arr = [-1];
+    }
+    return arr;
+}
