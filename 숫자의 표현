@@ -1,0 +1,29 @@
+function sigma(n){
+    return n*(n+1)/2;
+}
+
+function subtractSigma(n,k){
+    let b = sigma(k);
+    let res = -1 + Math.sqrt(1-4*(-2*(n+b)));
+    return Number.isInteger(res);
+}
+
+
+function solution(n) {
+    let count = 0;
+    let sum =0;
+    for(let i=1; sum<=n; i++){
+        sum+= i;
+        if(sum == n){
+            count++;
+            break;
+        }
+    }
+    for(let i=2; i<=Math.ceil(n/2); i++){
+        if(subtractSigma(n,i)){
+            count++;
+        }
+    }
+    return count+1;
+}
+//시그마 
