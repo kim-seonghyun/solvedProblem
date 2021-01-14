@@ -1,0 +1,8 @@
+function solution(s){
+    let ps = s.match(/p/gi);
+    let ys = s.match(/y/gi);
+    if((ps != null && ys != null) && ps.length == ys.length){
+        return true
+    }
+    return false;
+}
