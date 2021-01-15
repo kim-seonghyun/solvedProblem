@@ -1,0 +1,17 @@
+function solution(s, n) {
+    s = s.split('');
+    s = s.map(el=>{
+        let ascii = el.charCodeAt()
+        if(ascii>= 65 &&  ascii <= 90){
+            console.log(ascii+n)
+            ascii = ((ascii+n) >= 91) ? (ascii+n) %91+65 : ascii+n;
+            return String.fromCharCode(ascii);
+        }
+        if(ascii>= 97 &&  ascii <= 122){
+            ascii = ((ascii+n) >= 123) ? (ascii+n) %123+97 : ascii+n;
+            return String.fromCharCode(ascii);
+        }
+        return ' '
+    })   
+    return s.join('');
+}
