@@ -11,3 +11,12 @@ function solution(s) {
     }).join(' ');
     
 }
+
+//정규식 버전 replace()사용
+function solution(s) {
+   let reg = /(\w)(\w)/g; //
+    return s.toUpperCase().replace(reg,function(a,p1,p2){
+         return p1.toUpperCase() + p2.toLowerCase();
+    })
+    
+}
