@@ -1,0 +1,13 @@
+function solution(s) {
+    s = s.toUpperCase().split(' ');
+    return  s.map((el,index)=>{
+        el = el.split('');
+        return el.map((element,sentenceIndex)=>{
+            if (sentenceIndex%2 ==0){
+                return element;
+            }
+            return element.toLowerCase();
+        }).join('');
+    }).join(' ');
+    
+}
