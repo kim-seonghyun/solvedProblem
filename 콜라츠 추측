@@ -14,3 +14,10 @@ function solution(num) {
     }
     return -1;
 }
+
+function collatz(num,count=0){ // 재귀 구현
+    return (num ==1) ? (count>= 500 ? -1 : count) : collatz(num%2==0 ? num/ 2 :num*3+1 ,++count);
+}
+function solution(num) {
+    return collatz(num);
+}
