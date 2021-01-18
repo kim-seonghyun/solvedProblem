@@ -1,0 +1,11 @@
+function solution(n) {
+    n = n.toString().split('').map((el)=>{
+        return parseInt(el);
+    });
+    n =  n.sort(function(a,b){
+        return b-a;
+    })
+    return parseInt(n.join(''));
+    
+    
+}
