@@ -1,0 +1,7 @@
+function solution(n) {
+    let res = Math.sqrt(n);
+    if(Number.isInteger(res)){
+        return Math.pow(res+1,2);
+    }
+    return -1;
+}
