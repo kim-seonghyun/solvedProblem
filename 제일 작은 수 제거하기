@@ -1,10 +1,5 @@
 function solution(arr) {
-    let min = Infinity;
-    arr.forEach((el)=>{
-        if(el < min){
-            min = el;   
-        }  
-    });
+    let min = Math.min(...arr); //배열 풀어 넣어줌
     
     arr = arr.filter((el)=>{
         return el > min;
