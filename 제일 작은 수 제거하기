@@ -1,0 +1,13 @@
+function solution(arr) {
+    let min = Infinity;
+    arr.forEach((el)=>{
+        if(el < min){
+            min = el;   
+        }  
+    });
+    
+    arr = arr.filter((el)=>{
+        return el > min;
+    })
+    return (Object.keys(arr).length ==0) ? [-1] : arr;
+}
