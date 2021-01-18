@@ -1,0 +1,17 @@
+function solution(n, m) {
+    let checkArr = new Array(1000001).fill(0);
+    let result = [];
+    for(let i=1; i<=n; i++){
+        if(n%i ==0){
+            checkArr[i] = 1;
+        }
+    }
+    for(let i= m; i>=0; i--){
+        if(m%i ==0 && checkArr[i] ){
+            result.push(i);
+            break;
+        }
+    }
+    result.push(n*m/result[0]);
+    return result;
+}
