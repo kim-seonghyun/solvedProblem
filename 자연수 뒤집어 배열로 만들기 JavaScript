@@ -1,0 +1,6 @@
+function solution(n) {
+    n = n.toString().split('').reverse();
+    return n.map((el)=>{
+        return parseInt(el);
+    });
+}
