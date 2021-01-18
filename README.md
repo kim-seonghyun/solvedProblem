@@ -16,3 +16,4 @@
 
 문자열 다루기 -> 정규식, string.match() 익히기
 
+배열에서 최대,최소값 찾기 -> Math.min(...arrayName) //깔끔!
