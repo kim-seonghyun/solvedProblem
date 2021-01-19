@@ -7,3 +7,9 @@ function solution(x) {
     }
     return (Number.isInteger(x/ digitSum)) ? true : false;
 }
+
+
+//간단 풀이
+function solution(x) {
+    return !(x % (x + '').split('').reduce((a,b)=>( +b + +a)));
+}
