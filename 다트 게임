@@ -40,3 +40,40 @@ function solution(dartResult) {
     }
     return result.reduce((accumulator,currentValue)=>accumulator + currentValue);
 }
+
+
+//정규식 도전, 여전히 복잡함
+let powValue = {
+    "S":1,
+    "D":2,
+    "T":3
+}
+
+function specialOperator (arr,char){
+    
+}
+
+function solution(dartResult) {
+    let numberMatch = dartResult.match(/\d+/g);
+    let charMatch = dartResult.match(/\D+/g);
+    let result =[];
+    numberMatch.map((el,index)=>{
+        let charArr = charMatch[index].split('');
+        result.push(Math.pow(el,powValue[charArr[0]]));
+        if(charArr[1]){
+           if(charArr[1] == '*'){
+               if(index !=0){
+                   result[index-1] *=2;
+               }
+                result[index]*=2;
+            }
+            if(charArr[1] == '#'){
+                result[index] *= -1;
+            }
+                }
+            })
+    return result.reduce((accu,current)=>{
+        return accu + +current;
+    },0)
+    
+}
