@@ -1,0 +1,9 @@
+function solution(x) {
+    let digitSum =0;
+    let tmp = x;
+    while(tmp>0){
+        digitSum += tmp % 10;
+        tmp = Math.floor(tmp/10);
+    }
+    return (Number.isInteger(x/ digitSum)) ? true : false;
+}
