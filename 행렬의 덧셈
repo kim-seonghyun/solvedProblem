@@ -1,0 +1,7 @@
+function solution(arr1, arr2) {
+    return arr1.map((firstEl,firstIndex)=>{
+         return firstEl.map((secondEl, secondIndex)=>{
+            return secondEl + arr2[firstIndex][secondIndex];   
+        })
+    })
+}
