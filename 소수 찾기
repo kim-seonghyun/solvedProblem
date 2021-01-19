@@ -16,3 +16,43 @@ function solution(n) {
     }
     return count;
 }
+
+//완전탐색 기초 
+   
+ let numberArray = new Set();
+function recursive(numbers =[], deep, max){
+    for(let i=deep; i<max; i++){
+        [numbers[deep],numbers[i]] = [numbers[i],numbers[deep]];
+        recursive(numbers,deep+1,max);
+       numberArray.add(+numbers.slice(0,deep+1).join(''));
+        [numbers[deep],numbers[i]] = [numbers[i],numbers[deep]]
+    }
+}
+function makePrimeArray (){
+    let primeNumberArr = new Array(1000001).fill(true);
+    primeNumberArr[0] =primeNumberArr[1]= 0;
+    for(let i=2; i<Math.sqrt(primeNumberArr.length); i++){
+        if(primeNumberArr[i]==false){
+            continue;
+        }
+        for(let j=2; i*j<primeNumberArr.length; j++){
+            primeNumberArr[i*j] = false;
+        }
+    }
+    return primeNumberArr;
+}
+
+function solution(numbers) {
+    let primeNumbers = makePrimeArray();
+    numbers = numbers.split('');
+    recursive(numbers,0,numbers.length);
+    numberArray = Array.from(numberArray);
+   
+    let counter =0;
+    numberArray.forEach((el)=>{
+        if(primeNumbers[el]){
+            counter++;
+        }
+    })
+    return counter;
+}
