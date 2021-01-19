@@ -1,0 +1,6 @@
+function solution(x, n) {
+    let result = new Array(n).fill(0);
+    return result.map((el,index)=>{
+        return x * (index+1);
+    })
+}
