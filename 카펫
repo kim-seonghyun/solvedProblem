@@ -1,0 +1,12 @@
+function solution(brown, yellow) {
+    
+    for(let i=1; ; i++){
+        let br = 4+2*i;
+        for(let j=1; j*i<=yellow; j++){
+            br+= 2;
+            if(br == brown && j*i == yellow){
+                return [i+2,j+2].sort(function(a,b){return b-a});
+            }
+        }
+    }
+}
