@@ -13,3 +13,12 @@ function solution(d, budget) {
     }
     return max;
 }
+
+//while안에 실행문 넣을수 있네????
+function solution(d, budget) {
+    d = d.sort(function(a,b){return a-b});
+    
+    while(d.reduce((a,b)=>{return a+b},0)> budget){d.pop()} ; 
+        
+    return d.length;
+}
