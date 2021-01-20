@@ -1,0 +1,15 @@
+function solution(d, budget) {
+    d = d.sort(function(a,b){
+        return a-b;
+    })
+    let max =0;
+    for(let i=1; i<=d.length; i++){
+        let arr = d.slice(0,i).reduce((accu,current)=>{
+            return accu + current;
+        })
+        if(arr <=budget && i > max ){
+            max = i;
+        }
+    }
+    return max;
+}
