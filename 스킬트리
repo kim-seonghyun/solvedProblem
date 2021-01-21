@@ -20,3 +20,8 @@ function solution(skill, skill_trees) {
 }
 
 //null을 리턴하면 런타임 에러가 뜬다?????
+
+
+// string변수를 정규식에 넣으려면 RegExp 객체를 사용하면 된다
+ex) let regExp = new RegExp('변수','플래그');
+
