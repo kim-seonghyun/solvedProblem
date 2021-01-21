@@ -1,0 +1,28 @@
+function returnDuplicated (a=[]){
+    let count =1;
+    let countArr =[];
+    a =a.filter((el,index)=>{
+        if(el == a[index+1]){
+           count++;
+        }else{
+            countArr.push((count==1)?'':count);
+            count=1;
+        }
+        return el != a[index+1];
+    });
+    return a.map((el,index)=>{
+        return countArr[index] + el;
+    }).join('');
+}
+
+function solution(s) {
+    let min = s.length;
+    for(let i=1; i<=s.length; i++){
+        let reg = new RegExp(`[a-z]{${i}}`,'g');
+        let a = s.match(reg);
+        let b = s.replace(reg,"");
+        let result = returnDuplicated(a) +b;
+        if(min > result.length) {min = result.length};
+    }
+   return min;
+}
