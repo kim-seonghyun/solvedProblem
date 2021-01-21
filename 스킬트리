@@ -1,0 +1,22 @@
+function solution(skill, skill_trees) {
+    skill = skill.split('');
+    skill_trees= skill_trees.map(el=>{
+        skill.forEach((_,index)=>{
+            el = el.replace(_,index); 
+        })
+        return (el.match(/\d/g)) ?el.match(/\d/g): -1 ;
+    })
+    
+    let result = skill_trees.map(el=>{
+        for(let i=0; i<el.length; i++){
+            if(el[i] == -1 || +el[i] != i){
+                return -1;
+            }
+        }
+        return 1;
+    }).filter((el)=>el == 1);
+    return result.length;
+    
+}
+
+//null을 리턴하면 런타임 에러가 뜬다?????
