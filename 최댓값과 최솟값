@@ -1,0 +1,10 @@
+function solution(s) {
+    let reg = /-*\d+/g;
+    s =s.match(reg).map(el=>{
+        return +el;
+    });
+    
+    let maxValue = Math.max(...s);
+    let minValue = Math.min(...s);
+    return `${minValue} ${maxValue}`;
+}
