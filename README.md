@@ -27,3 +27,5 @@
 // string변수를 정규식에 넣으려면 RegExp 객체를 사용하면 된다
 ex) let regExp = new RegExp('변수','플래그');
 특정 문자만 남기고 싶으면 replace(정규식, "") 요렇게 하면 된다
+
+max 초기값은 무조건 -Infinity 이다!!!!!!!!
