@@ -14,3 +14,32 @@ function solution(number, k) {
     }
         return resultArray.join('');
 }
+
+
+//성공한거, max값은 무조건 -Infinity로하자. 0으로 했다가 고생했다
+//각 자리수마다 가능한 숫자들만 확인
+
+function solution(number, k) {
+    number = number.split('');
+    let sliceIndex = k+1;
+    let resultArray = [];
+    let nowIndex =0;
+    while(resultArray.length != (number.length - k)){
+        //가능한 경우 배열
+        let maxValue = -Infinity;
+        let index = 0;
+        for(let i =nowIndex; i< sliceIndex; i++){
+            if(number[i] > maxValue){
+                maxValue = number[i]; //최대값
+                index = i; // 인덱스
+            }
+            if(number[i]==9){
+                break;
+            }
+        }
+        sliceIndex++;
+         nowIndex = index+1;
+        resultArray.push(maxValue);
+    }
+        return resultArray.join('');
+}
