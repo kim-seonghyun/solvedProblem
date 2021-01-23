@@ -8,3 +8,15 @@ function solution(n) {
         }
     }
 }
+
+//꿀죔
+function solution(n) {
+    let regExp = /1/g;
+    let origin = n.toString(2).match(regExp).length;
+    for(let i= n+1; ; i++){
+        let tmp = i.toString(2).match(regExp).length;
+        if(tmp == origin){
+            return i
+        }
+    }
+}
