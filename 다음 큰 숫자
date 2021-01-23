@@ -1,0 +1,10 @@
+function solution(n) {
+    let origin = n.toString(2).split('').filter(el => el == 1).length;
+    for(let i=n+1; ; i++){
+        let tmp = i.toString(2).split('').filter(el=> el ==1).length;
+        
+        if(tmp == origin){
+            return i;
+        }
+    }
+}
