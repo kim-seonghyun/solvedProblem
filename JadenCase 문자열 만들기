@@ -1,0 +1,8 @@
+function solution(s) {
+    s = s.split(' ');
+    return s.map(el=>{
+        el = el.toLowerCase();
+        return el.replace(el.charAt(0),el.charAt(0).toUpperCase());
+    }).join(' ');
+}
+//꿀죔
