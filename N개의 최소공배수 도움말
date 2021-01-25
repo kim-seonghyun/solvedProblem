@@ -1,0 +1,22 @@
+//n의 배수가 x가 되나 확인하는 함수
+function isMultiple(x,n){
+    return (n %x ==0 ) ? true: false;
+}
+
+function solution(arr) {
+    arr = arr.sort(function(a,b){return b-a});
+    
+    for(let i=1; ; i++){
+        let GCF = arr[0] * i;
+        let count = 1;
+        for(let j=1; j<arr.length; j++){
+            if(!isMultiple(arr[j],GCF)){
+                break;
+            }
+            count++;
+        }
+        if(count==arr.length){
+            return GCF;        
+        }
+    }
+}
