@@ -1,0 +1,10 @@
+function solution(n) {
+    let result =0;
+    let prepre = 0;
+    let pre = 1;
+    for(let i=1; i< n; i++ ){
+        result = (prepre + pre)%1234567;
+        [pre,prepre] = [result,pre];
+    }
+    return result % 1234567;
+}
