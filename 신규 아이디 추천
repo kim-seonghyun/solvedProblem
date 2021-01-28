@@ -1,0 +1,26 @@
+function solution(new_id) {
+    let reg = /[^0-9|^a-z|^._-]/g;
+    let reg2 = /\^/g;
+    let periodReg = /[.]+/g;
+    new_id = new_id.toLowerCase().replace(reg,"").replace(reg2,"").replace(periodReg,'.');
+    if(new_id.charAt(0) == '.'){
+       new_id = new_id.slice(1);
+    }
+    if(new_id.charAt(new_id.length-1) == '.'){
+        new_id = new_id.slice(0,new_id.length-1);
+    }
+    if(new_id.length ==0){
+        new_id += "a";
+    }
+    if(new_id.length >= 16){
+        new_id = new_id.slice(0,15);
+        if(new_id.charAt(new_id.length-1) == '.'){
+            new_id = new_id.slice(0,new_id.length-1);
+        }
+    }
+    if(new_id.length <= 2){
+        let lastAlphabet = new_id.charAt(new_id.length-1);
+        new_id += lastAlphabet.repeat(3 - new_id.length)
+    }
+   return new_id;
+}
