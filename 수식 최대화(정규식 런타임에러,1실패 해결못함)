@@ -1,0 +1,34 @@
+function calculateFactory(expression,operator){
+   let reg = new RegExp(`(^-|\\*(?=-))*\\d+(${operator}(-)*\\d+)+`,'g');
+    
+    return expression.replace(reg,function(match){
+       return eval(match);
+   })
+     
+}
+
+function solution(expression) {
+    
+    let operators =  [
+        ['-', '*', '+'],
+        ['-', '+', '*'],
+        ['*', '-', '+'],
+        ['*', '+', '-'],
+        ['+', '-', '*'],
+        ['+', '*', '-']
+    ]
+    let max = -Infinity;
+    operators.forEach(arr=>{
+        let tmpExpression = expression;
+        arr.forEach(el=>{
+            tmpExpression = calculateFactory(tmpExpression,'\\'+el);
+        })
+        tmpExpression = eval(tmpExpression);
+        tmpExpression = Math.abs(tmpExpression);
+        if(tmpExpression > max){
+            max = tmpExpression;
+        }
+    })
+    return max;              
+    
+}
