@@ -1,0 +1,11 @@
+function solution(nums) {
+    const pocketmonSpicies = new Set(nums).size;
+    const pickablePocketMon = nums.length/2;
+   
+    return (pickablePocketMon >= pocketmonSpicies) ? pocketmonSpicies : pickablePocketMon
+    //뽑을수있는 포켓몬 종류 수 리턴
+    
+    // 뽑을수 있는개수가 포켓몬 종류랑 같거나 많으면 size 리턴
+    
+    //뽑을수 있는 개수가 종류보다 적으면 뽑을 수 있는개수 리턴
+}
