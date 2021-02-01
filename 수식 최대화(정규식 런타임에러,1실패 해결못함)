@@ -32,3 +32,38 @@ function solution(expression) {
     return max;              
     
 }
+
+//해결 
+
+let operatorsCase = []
+function recursive(arr, deep, r){
+    if(deep == r){
+        operatorsCase.push([...arr]);
+        return arr
+    }
+    for(let i=deep; i<arr.length; i++){
+        [arr[i],arr[deep]]  = [arr[deep],arr[i]];
+        recursive(arr,deep+1,r);
+        [arr[i],arr[deep]]  = [arr[deep],arr[i]];
+    }
+}
+
+function solution(expression) {
+    
+    recursive(['-','*','+'],0,3);
+   let result = [];
+    expression = expression.split(/(\D)/);
+    
+    operatorsCase.forEach(operators=>{
+        let tmp = [...expression];
+        
+        operators.forEach(operator=>{
+            while(tmp.indexOf(operator) != -1){
+                let index = tmp.indexOf(operator);
+                tmp.splice(index-1,3,eval(tmp.slice(index-1,index+2).join('')));
+            }
+        })
+        result.push(Math.abs(tmp));
+    })
+    return Math.max(...result)
+}
