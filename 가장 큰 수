@@ -1,0 +1,10 @@
+function solution(numbers) {
+    numbers = numbers.map(el=>{
+        return {"origin": String(el), "rank":String(el).repeat(4).slice(0,4)};
+    })
+    numbers = numbers.sort(function(a,b){return +b.rank- +a.rank})
+    numbers = numbers.reduce((accu,current)=>{
+        return accu + current.origin;
+    },'')
+    return +numbers ? numbers : "0";
+}
