@@ -1,0 +1,15 @@
+function solution(clothes) {
+    let arr = {};
+    
+    clothes.forEach(el=>{
+        if(!arr[el[1]]){
+            arr[el[1]] = 1;
+        }else{
+            arr[el[1]]+= 1;
+        }
+    })
+    arr = Object.entries(arr);
+    return arr.reduce((accu,current)=>{
+        return accu * (current[1] +1);
+    },1) -1 
+}
