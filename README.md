@@ -31,3 +31,5 @@ ex) let regExp = new RegExp('변수','플래그');
 max 초기값은 무조건 -Infinity 이다!!!!!!!!
 
 // array.reduce() 사용 주의, initialValue를 사용하지않으면 index는 1부터 탐색한다. 다른 배열과 함께 사용할때는 오류가 일어날수도 있기때문에 initialValue는 0으로 설정해주자
+
+홍일점 -> XOR 
