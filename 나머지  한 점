@@ -1,0 +1,41 @@
+function returnDifferentValue(arr){
+    
+    return arr[0] ^ arr[1] ^ arr[2]
+}
+
+function solution(v) {
+    let arrX = [];
+    let arrY = [];
+    v.forEach(a=>{
+        arrX.push(a[0])
+        arrY.push(a[1]);
+    });
+    let x = returnDifferentValue(arrX);
+    let y = returnDifferentValue(arrY);
+    return [x,y];   
+}
+
+//비트 연산 버전 - 이산수학 논리연산 쪽 업로드.
+
+function returnDifferentValue(arr){
+    
+    if(arr[0] == arr[1]){
+        return arr[2];
+    }else if(arr[1] == arr[2]){
+        return arr[0];
+    }else if(arr[0]==arr[2]){
+        return arr[1];
+    }
+}
+
+function solution(v) {
+    let arrX = [];
+    let arrY = [];
+    v.forEach(a=>{
+        arrX.push(a[0])
+        arrY.push(a[1]);
+    });
+    let x = returnDifferentValue(arrX);
+    let y = returnDifferentValue(arrY);
+    return [x,y];
+}
