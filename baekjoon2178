@@ -1,0 +1,42 @@
+N, M = map(int, input().split())
+
+
+def addVisited(element):
+    if element == '1':
+        return None
+    else:
+        return 0
+
+
+graph = []
+
+# 그래프 입력 받기
+for j in range(N):
+    graph.append(list(input()))
+    graph[j] = list(map(addVisited, graph[j]))
+
+
+# (0,0) queue에 삽입
+queue = [(0, 0)]
+graph[0][0] = 0
+
+
+# queue가 empty가 될때 까지 4방향 반복하면서 insert, deque 반복
+while queue:
+    currentLocation = queue.pop(0)
+    x, y = map(int, currentLocation)
+    distance = graph[x][y]
+    if x < N-1 and graph[x+1][y] == None:
+        graph[x+1][y] = distance + 1
+        queue.append((x+1, y))
+    if x > 0 and graph[x-1][y] == None:
+        graph[x-1][y] = distance + 1
+        queue.append((x-1, y))
+    if y < M - 1 and graph[x][y+1] == None:
+        graph[x][y+1] = distance + 1
+        queue.append((x, y+1))
+    if y > 0 and graph[x][y-1] == None:
+        graph[x][y-1] = distance + 1
+        queue.append((x, y-1))
+
+print(graph[N-1][M-1]+1)
